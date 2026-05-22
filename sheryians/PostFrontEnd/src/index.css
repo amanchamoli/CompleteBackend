@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Light Theme — User Palette */
+  --bg-primary: #F0F0F0;
+  --bg-secondary: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-glass-hover: rgba(255, 255, 255, 0.92);
+  
+  /* Accents */
+  --accent-primary: #4A90E2;
+  --accent-secondary: #A9C9EA;
+  --accent-gradient: linear-gradient(135deg, #4A90E2, #A9C9EA);
+  --accent-light: #D9EAF7;
+  
+  /* Text */
+  --text-main: #1a2a3a;
+  --text-muted: #6b7f94;
+  
+  /* Borders */
+  --border-color: rgba(74, 144, 226, 0.15);
+  --border-focus: rgba(74, 144, 226, 0.4);
+  
+  /* Effects */
+  --shadow-sm: 0 4px 6px rgba(74, 144, 226, 0.08);
+  --shadow-lg: 0 10px 30px rgba(74, 144, 226, 0.1);
+  --blur-glass: blur(16px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+body {
+  /* Subtle decorative gradient blobs using the palette */
+  background: radial-gradient(circle at 15% 50%, rgba(74, 144, 226, 0.07), transparent 25%),
+              radial-gradient(circle at 85% 30%, rgba(169, 201, 234, 0.1), transparent 25%);
+  background-attachment: fixed;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
