@@ -6,20 +6,6 @@ const jwt = require("jsonwebtoken")
 
 async function createMusic(req, res){
 
-    const token = req.cookies.token;
-
-    if (!token){
-        return res.status(400).json({ message: "Unauthorized"})
-    }
-     
-    try{
-        const decoded =jwt.verify(token, process.env.JWT_SECRET)
-
-        if(decoded.role !== "artist"){
-            return res.status(403).json({message: "not have permission to create music"});
-        }
-    
-
     const {title} = req.body;
     const file = req.file;
     
@@ -28,7 +14,7 @@ async function createMusic(req, res){
     const music = await musicModel.create({
         uri: result.url,
         title,
-        artist: decoded.id,
+        artist: req.user.id,
     })
 
     res.status(201).json({
@@ -40,33 +26,29 @@ async function createMusic(req, res){
             artist: music.artist
         }
     })
-    }catch(err){
-        console.log(err);
-        return res.status(401).json({ message:err.message })
-    }
 }
 
 async function createAlbum(req, res){
 
-     const token = req.cookies.token;
+    // const token = req.cookies.token;
 
-    if (!token){
-        return res.status(400).json({ message: "Unauthorized"})
-    }
+    // if (!token){
+    //    return res.status(400).json({ message: "Unauthorized"})
+    // }
      
-    try{
+    //try{
 
-        const decoded =jwt.verify(token, process.env.JWT_SECRET)
+    //    const decoded =jwt.verify(token, process.env.JWT_SECRET)
 
-        if(decoded.role !== "artist"){
-            return res.status(403).json({message: "not have permission to create album"});
-        }
+    //    if(decoded.role !== "artist"){
+    //        return res.status(403).json({message: "not have permission to create album"});
+    //    }
 
-        const { title ,musicIds}  = req.body;
+        const { title ,musics}  = req.body;
 
         const album = await albumModel.create({
             title,
-            artist: decoded.id,
+            artist: req.user.id,
             musics: musics,
         })
 
@@ -80,11 +62,10 @@ async function createAlbum(req, res){
             }
         })
 
-    }
-    catch(err){
-        console.log(err);
-        return res.status(401).json({ message: "Unauthorized" })
-    }
+    //}catch(err){
+        //console.log(err);
+        //return res.status(401).json({ message: "Unauthorized" })
+    //}
 
 }
 
