@@ -6,12 +6,12 @@ const ImageKitClient = new ImageKit({
 })
 
 async function uploadFile(file){
-    const result = await ImageKitClient.file.upload({
+    const result = await ImageKitClient.files.upload({
         file,
-        fileName: "music_" + Data.now(),
+        fileName: "music_" + Date.now(),
         folder: "spotify-music-files/music"
     });
     return result
 }
 
-module.exports = ImageKitClient
+module.exports = { uploadFile }
